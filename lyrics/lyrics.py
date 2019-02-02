@@ -1,6 +1,7 @@
 import re
-
 import nltk
+
+import random
 
 from pprint import pprint
 import code
@@ -10,11 +11,15 @@ def main():
         rap_god = f.read()
 
     parts = parse_lyrics(rap_god)
+    verse = parts[0]
 
-    sent = Sentence(parts[0][0])
+    for line in verse:
+        ctx = Context(line)
+        nouns = list(ctx.nouns())
+        if len(nouns) > 0:
+            random.choice(nouns).set('cat')
 
-    next(sent.nouns()).set('cat')
-    print(sent.generate())
+        print(ctx.generate())
 
 def parse_lyrics(lyrics, clean = True):
     if clean:
@@ -26,7 +31,7 @@ def parse_lyrics(lyrics, clean = True):
 
     return verses
 
-class Sentence:
+class Context:
     def __init__(self, contents):
         self._words = nltk.word_tokenize(contents)
         self._tagged_words = nltk.pos_tag(self._words)
