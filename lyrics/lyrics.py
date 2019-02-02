@@ -7,15 +7,16 @@ import code
 
 from .context import Context
 
+import tswift
+
 def main():
     lyrics = generate_lyrics('cat')
     print(lyrics)
 
 def generate_lyrics(word):
-    with open('lyrics/rap_god.txt') as f:
-        rap_god = f.read()
+    song = tswift.Song(title='Rap God', artist='Eminem')
 
-    parts = parse_lyrics(rap_god)
+    parts = parse_lyrics(song.lyrics)
     verse = parts[0]
 
     lyrics = []
