@@ -7,19 +7,26 @@ from pprint import pprint
 import code
 
 def main():
+    lyrics = generate_lyrics('cat')
+    print(lyrics)
+
+def generate_lyrics(word):
     with open('lyrics/rap_god.txt') as f:
         rap_god = f.read()
 
     parts = parse_lyrics(rap_god)
     verse = parts[0]
 
+    lyrics = []
     for line in verse:
         ctx = Context(line)
         nouns = list(ctx.nouns())
         if len(nouns) > 0:
-            random.choice(nouns).set('cat')
+            random.choice(nouns).set(word)
 
-        print(ctx.generate())
+        lyrics.append(ctx.generate())
+
+    return '\n'.join(lyrics)
 
 def parse_lyrics(lyrics, clean = True):
     if clean:
