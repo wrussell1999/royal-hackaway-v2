@@ -19,7 +19,7 @@ class Generator:
         content = []
         for verse in verses:
             content.extend(verse)
-            if len(content) > 5:
+            if len(content) > 20:
                 break
 
         lyrics = []
