@@ -12,9 +12,9 @@ class Context:
         # clean up
         words = re.sub(r" (n\'t|'\w+)\b", r'\1', words)  # contractions
         words = re.sub("(''|``)", '"', words)            # quotes
-        words = re.sub(" ([.,)])", r'\1', words)         # left-associative
-        words = re.sub(r"([(]) ", r'\1', words)          # right-associative
-        words = re.sub(r"\bgon na\b", 'gonna', words)    # "gonna"
+        words = re.sub(' ([.,?!)])', r'\1', words)       # left-associative
+        words = re.sub('"([(]) ', r'\1', words)          # right-associative
+        words = re.sub(r'\bgon na\b', 'gonna', words)    # "gonna"
         words = words.capitalize()
 
         return words
