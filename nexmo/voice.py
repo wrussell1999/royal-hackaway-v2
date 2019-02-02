@@ -13,10 +13,9 @@ client = nexmo.Client(
     private_key=private_key,
 )
 
-response = client.create_call({
-  'to': [{'type': 'phone', 'number': config['TO_NUMBER']}],
-  'from': {'type': 'phone', 'number': config['NEXMO_NUMBER']},
-  'answer_url': ['https://ff31a71a.ngrok.io/data.json']
-})
-
-pprint(response)
+def make_call(number):
+    client.create_call({
+    'to': [{'type': 'phone', 'number': number}],
+    'from': {'type': 'phone', 'number': config['NEXMO_NUMBER']},
+    'answer_url': ['https://ff31a71a.ngrok.io/data.json']
+    })
