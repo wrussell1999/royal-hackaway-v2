@@ -12,14 +12,18 @@ class Generator:
 
     def generate_lyrics(self, word):
         song = random.choice(self.songs)
-
         song = tswift.Song(*song)
 
-        parts = self.parse_lyrics(song.lyrics)
-        verse = parts[0]
+        verses = self.parse_lyrics(song.lyrics)
+
+        content = []
+        for verse in verses:
+            content.extend(verse)
+            if len(content) > 5:
+                break
 
         lyrics = []
-        for line in verse:
+        for line in content:
             ctx = Context(line)
             nouns = list(ctx.nouns())
             if len(nouns) > 0:
