@@ -1,7 +1,6 @@
 {
     "APPLICATION_ID": "",
     "APPLICATION_PRIVATE_KEY_PATH": "",
-    "TO_NUMBER": "",
     "NEXMO_NUMBER": "",
     "SECRET": ""
 }
