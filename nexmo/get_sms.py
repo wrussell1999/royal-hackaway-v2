@@ -2,14 +2,15 @@ from flask import Flask, request, jsonify
 from pprint import pprint
 
 app = Flask(__name__)
-
 @app.route('/webhooks/get_sms', methods=['GET', 'POST'])
 def inbound_sms():
     if request.is_json:
         pprint(request.get_json())
     else:
         data = dict(request.form) or dict(request.args)
-        pprint(data)
+        theme = data['text'].split(' ')[-1]
+        user_number = data['msisdn']
+        print('Theme: ' + theme)
 
     return ('', 204)
 

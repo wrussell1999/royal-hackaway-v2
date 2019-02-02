@@ -1,17 +1,17 @@
 import nexmo
+import json
 from pprint import pprint
 
-with open('config.json', 'r') as config_file:
+with open('config/config.json', 'r') as config_file:
     config = config_file.read()
 
-with open('private.key', 'r') as content_file:
+with open('config/private.key', 'r') as content_file:
     content = content_file.read()
 
 client = nexmo.Client(
     application_id=config['APPLICATION_ID'],
     private_key=content,
 )
-
 
 response = client.create_call({
   'to': [{'type': 'phone', 'number': config['TO_NUMBER']}],

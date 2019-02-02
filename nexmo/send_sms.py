@@ -1,7 +1,7 @@
 import nexmo
 import json
 
-with open('config.json', 'r') as config_file:
+with open('config/config.json', 'r') as config_file:
     config = config_file.read()
 
 client = nexmo.Client(key=config['APPLICATION_ID'], secret=config['SECRET'])
