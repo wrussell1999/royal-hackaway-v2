@@ -1,5 +1,6 @@
 import os
 import json
+import argparse
 
 import tswift
 
@@ -11,10 +12,22 @@ CACHE = 'cache/'
 SONG_CACHE = 'cache/songs.json'
 
 def main():
+    parser = argparse.ArgumentParser(description='command line to generate weird lyrics')
+    parser.add_argument('--force-reload', action='store_true',
+            help='force rebuild the songs cache')
+    args = parser.parse_args()
+
+    songs = load_songs(args.force_reload)
+    gen = Generator(songs)
+
+    lyrics = gen.generate_lyrics('cat')
+    print(lyrics)
+
+def load_songs(force_reload=False):
     with open(CONFIG) as f:
         config = json.load(f)
 
-    if not os.path.exists(SONG_CACHE) or is_more_recent(CONFIG, SONG_CACHE):
+    if force_reload or not os.path.exists(SONG_CACHE) or os.path.getmtime(CONFIG) > os.path.getmtime(SONG_CACHE):
         os.makedirs(CACHE, exist_ok = True)
 
         cache = []
@@ -36,10 +49,4 @@ def main():
         with open(SONG_CACHE) as f:
             cache = json.load(f)
 
-    gen = Generator(cache)
-
-    lyrics = gen.generate_lyrics('cat')
-    print(lyrics)
-
-def is_more_recent(fp1, fp2):
-    return os.path.getmtime(fp1) > os.path.getmtime(fp2)
+    return cache
