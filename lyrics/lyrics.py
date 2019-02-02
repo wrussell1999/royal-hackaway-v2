@@ -13,6 +13,7 @@ SONG_CACHE = 'cache/songs.json'
 
 def main():
     parser = argparse.ArgumentParser(description='command line to generate weird lyrics')
+    parser.add_argument('word', help='word to make the song about')
     parser.add_argument('--force-reload', action='store_true',
             help='force rebuild the songs cache')
     args = parser.parse_args()
@@ -20,7 +21,7 @@ def main():
     songs = load_songs(args.force_reload)
     gen = Generator(songs)
 
-    lyrics = gen.generate_lyrics('cat')
+    lyrics = gen.generate_lyrics(args.word)
     print(lyrics)
 
 def load_songs(force_reload=False):
