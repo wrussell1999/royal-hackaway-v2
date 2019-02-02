@@ -1,4 +1,5 @@
 import nltk
+import re
 
 class Context:
     def __init__(self, contents):
@@ -6,7 +7,17 @@ class Context:
         self._tagged_words = nltk.pos_tag(self._words)
 
     def generate(self):
-        return ' '.join(self._words)
+        words = ' '.join(self._words)
+
+        # clean up
+        words = re.sub(r" (n\'t|'\w+)\b", r'\1', words)  # contractions
+        words = re.sub("(''|``)", '"', words)            # quotes
+        words = re.sub(" ([.,)])", r'\1', words)         # left-associative
+        words = re.sub(r"([(]) ", r'\1', words)          # right-associative
+        words = re.sub(r"\bgon na\b", 'gonna', words)    # "gonna"
+        words = words.capitalize()
+
+        return words
 
     def get(self, position):
         return self._tagged_words[position]
