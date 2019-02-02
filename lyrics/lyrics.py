@@ -6,10 +6,10 @@ import tswift
 
 from .generator import Generator
 
-CONFIG = 'config.json'
+CONFIG = 'lyrics/config.json'
 
 CACHE = 'cache/'
-SONG_CACHE = 'cache/songs.json'
+SONG_CACHE = os.path.join(CACHE, 'songs.json')
 
 def main():
     parser = argparse.ArgumentParser(description='command line to generate weird lyrics')
