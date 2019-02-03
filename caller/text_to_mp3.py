@@ -1,5 +1,6 @@
 import os
 from google.cloud import texttospeech
+from pydub import AudioSegment
 
 client = texttospeech.TextToSpeechClient()
 
@@ -23,3 +24,14 @@ def make_mp3(text, filename):
     with open(filename, 'w+b') as out:
         out.write(response.audio_content)
         print(f'Audio content written to {filename}')
+    sound1 = AudioSegment.from_mp3(filename)
+    sound2 = AudioSegment.from_mp3("supreme.mp3")
+
+    # mix sound2 with sound1, starting at 5000ms into sound1)
+    output = sound1.overlay(sound2, position=100)
+
+    # save the result
+    new_filename = os.path.join(os.path.dirname(filename), 'mod-' + os.path.basename(filename))
+    print(new_filename)
+    output.export(new_filename, format="mp3")
+    return new_filename
