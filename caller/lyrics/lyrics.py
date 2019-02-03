@@ -6,7 +6,7 @@ import tswift
 
 from .generator import Generator
 
-CONFIG = 'lyrics/config.json'
+CONFIG = 'config/songs.json'
 
 CACHE = 'cache/'
 SONG_CACHE = os.path.join(CACHE, 'songs.json')

@@ -9,6 +9,8 @@ from flask import Flask, request, jsonify
 from . import config
 from . import voice
 
+from . import lyrics
+
 import threading
 
 from collections import deque
@@ -18,6 +20,9 @@ clips = {}
 
 def main():
     app = Flask(__name__)
+
+    songs = lyrics.load_songs()
+    gen = lyrics.Generator(songs)
 
     @app.route('/webhooks/inbound_sms', methods=['GET', 'POST'])
     def inbound_sms():
@@ -31,7 +36,9 @@ def main():
             print('User number: ' + mobile_number)
             print('Theme: ' + theme)
 
-            thread = threading.Thread(target=lambda: make_call(data['text'], mobile_number))
+            tosend = gen.generate_lyrics(theme)
+
+            thread = threading.Thread(target=lambda: make_call(tosend, mobile_number))
             thread.start()
 
         return ('', 204)
@@ -43,9 +50,10 @@ def main():
 
         recording = clips[number].popleft()
         recording = os.path.basename(recording)
-        recording = f'{server}/recordings/{recording}'
 
-        if os.path.exists(f'cache/recordings/{number}.mp3'):
+        if os.path.exists(os.path.join('cache/recordings/', recording)):
+            print("RETURNING AUDIO")
+            recording = f'{server}/recordings/{recording}'
             return flask.jsonify([
                 {
                     'action': 'stream',

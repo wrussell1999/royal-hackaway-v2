@@ -15,8 +15,8 @@ def make_mp3(text, filename):
 
     audio_config = texttospeech.types.AudioConfig(
         audio_encoding=texttospeech.enums.AudioEncoding.MP3,
-        speaking_rate=0.70,
-        pitch=-15.0)
+        speaking_rate=0.93,
+        pitch=-6.0)
 
     os.makedirs(os.path.dirname(filename), exist_ok = True)
     response = client.synthesize_speech(synthesis_input, voice, audio_config)
