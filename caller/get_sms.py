@@ -4,7 +4,6 @@ from pprint import pprint
 
 import flask
 from flask import Flask, request, jsonify
-from flask import url_for
 
 from . import voice
 
