@@ -115,5 +115,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# nexmo
-private.key
+# Projcet specific settings
+cache/
+caller/config/
