@@ -10,7 +10,7 @@ class Generator:
     def __init__(self, songs):
         self.songs = songs
 
-    def generate_lyrics(self, word):
+    def generate_lyrics(self, word, lines=20):
         song = random.choice(self.songs)
         song = tswift.Song(*song)
 
@@ -19,7 +19,7 @@ class Generator:
         content = []
         for verse in verses:
             content.extend(verse)
-            if len(content) > 20:
+            if len(content) > lines:
                 break
 
         lyrics = []
@@ -29,7 +29,10 @@ class Generator:
             if len(nouns) > 0:
                 random.choice(nouns).set(word)
 
-            lyrics.append(ctx.generate())
+            part = ctx.generate()
+            if not re.search(r'[,.?!]$', part):
+                part += ','
+            lyrics.append(part)
 
         return '\n'.join(lyrics)
 
