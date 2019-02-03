@@ -7,27 +7,35 @@ from flask import Flask, request, jsonify
 from flask import url_for
 
 from . import voice
-from . import tts_json
 
 def main():
     app = Flask(__name__)
+
+    themes = {}
+
     @app.route('/webhooks/inbound_sms', methods=['GET', 'POST'])
     def inbound_sms():
         if request.is_json:
             pprint(request.get_json())
         else:
             data = dict(request.form) or dict(request.args)
-            theme = data['text'].split(' ')[-1]
             mobile_number = data['msisdn']
-            print('Theme: ' + theme)
+            themes[mobile_number] = data['text'].split(' ')[-1]
             print('User number: ' + mobile_number)
-            tts_json.insert_lyric(theme)
+            print('Theme: ' + themes[mobile_number])
             voice.make_call(mobile_number)
+
         return ('', 204)
 
-    @app.route('/data.json')
-    def send():
-        filename = os.path.abspath('data.json')
-        return flask.send_file(filename)
+    @app.route('/calls/<number>.json')
+    def send(number):
+        return flask.jsonify([
+            {
+                "action": "talk",
+                "voiceName": "Brian",
+                "text": themes[number]
+            }
+        ])
 
     app.run(port=3000)
+
