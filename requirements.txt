@@ -2,3 +2,4 @@ flask
 nexmo
 nltk
 tswift
+google-cloud-texttospeech
