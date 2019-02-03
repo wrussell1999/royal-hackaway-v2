@@ -1,4 +1,4 @@
-from . import get_sms
+from . import caller
 
 if __name__ == "__main__":
-    get_sms.main()
+    caller.main()
