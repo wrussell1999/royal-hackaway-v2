@@ -78,7 +78,7 @@ def main():
 
 def make_call(text, mobile_number):
     filename = f"cache/recordings/{mobile_number}-{uuid.uuid4()}.mp3"
-    text_to_mp3.make_mp3(text, filename)
+    filename = text_to_mp3.make_mp3(text, filename)
     if mobile_number in clips:
         clips[mobile_number].append(filename)
     else:
