@@ -40,6 +40,10 @@ Nexmo API and the Google Cloud Platform so that you can access their APIs.
 
 To run:
 
+```bash
+python3 -m caller
+```
+
 ...
 
 ## Technical details
