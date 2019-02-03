@@ -15,7 +15,17 @@ client = nexmo.Client(
 
 def make_call(number):
     client.create_call({
-        'to': [{'type': 'phone', 'number': number}],
-        'from': {'type': 'phone', 'number': config['NEXMO_NUMBER']},
-        'answer_url': [f'https://d17bbcee.ngrok.io/calls/{number}.json']
+        'to': [
+            {
+                'type': 'phone',
+                'number': number
+            }
+        ],
+        'from': {
+            'type': 'phone',
+            'number': config['NEXMO_NUMBER']
+        },
+        'answer_url': [
+            f'https://d17bbcee.ngrok.io/calls/{number}.json'
+        ]
     })
