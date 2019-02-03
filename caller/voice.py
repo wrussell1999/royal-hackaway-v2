@@ -1,19 +1,15 @@
 import nexmo
-import json
 from pprint import pprint
 
-with open('caller/config/config.json', 'r') as config_file:
-    config = json.load(config_file)
-
-with open('caller/config/private.key', 'r') as key_file:
-    private_key = key_file.read()
+from . import config
 
 client = nexmo.Client(
-    application_id=config['APPLICATION_ID'],
-    private_key=private_key,
+    application_id=config.config['APPLICATION_ID'],
+    private_key=config.private_key,
 )
 
 def make_call(number):
+    server = config.config['SERVER']
     client.create_call({
         'to': [
             {
@@ -23,9 +19,9 @@ def make_call(number):
         ],
         'from': {
             'type': 'phone',
-            'number': config['NEXMO_NUMBER']
+            'number': config.config['NEXMO_NUMBER']
         },
         'answer_url': [
-            f'{config["SERVER"]}/calls/{number}.json'
+            f'{server}/calls/{number}.json'
         ]
     })
