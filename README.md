@@ -2,6 +2,8 @@
 
 Rap God is our creation from [Royal Hackaway](https://royalhackaway.com/).
 
+We won the Nexmo Prize (best use of their API) and best audio hack.
+
 After being inspired by a friend's creation of a rap bot, we decided to build a
 bot that could alter existing rap songs to be about new topics. Then, of
 course, we needed a way to access the bot, and we wanted to do something with
@@ -15,13 +17,15 @@ The entire project is built in python. We've used quite a few libraries, includi
 - nexmo (for interfacing with the nexmo platform)
 - nltk (natural language processing)
 - tswift (for fetching song lyrics)
+- google-cloud-texttospeech (for text-to-speech)
+- pydub (for layering 2 MP3 files ontop of eachother)
 
 ## Team
 
 Our team was just two people,
 
-- [Justin Chadwell](https://github.com/jedevc)
-- [Will Russell](https://github.com/wrussell1999)
+- [Justin Chadwell](https://github.com/jedevc): Natural language processing and lyric generation
+- [Will Russell](https://github.com/wrussell1999): Nexmo, flask, tts and mp3 layering
 
 ## Installation
 
