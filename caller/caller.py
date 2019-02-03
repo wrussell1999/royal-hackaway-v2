@@ -44,7 +44,6 @@ def main():
         recording = clips[number].popleft()
         recording = os.path.basename(recording)
         recording = f'{server}/recordings/{recording}'
-        # recording = f'{server}/recordings/{number}.mp3'
 
         if os.path.exists(f'cache/recordings/{number}.mp3'):
             return flask.jsonify([
@@ -64,12 +63,8 @@ def main():
 
     @app.route('/recordings/<filename>')
     def get_recording(filename):
-        #path = os.path.abspath('output.mp3')
-        #return flask.send_file(path)
         path = os.path.abspath('cache/recordings')
-        print(path)
-        print(filename)
-        return flask.send_from_directory(path, filename)
+        return flask.send_from_directory(path, filename, cache_timeout=-1)
 
     app.run(port=3001)
 
