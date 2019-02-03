@@ -26,6 +26,6 @@ def make_call(number):
             'number': config['NEXMO_NUMBER']
         },
         'answer_url': [
-            f'https://d17bbcee.ngrok.io/calls/{number}.json'
+            f'{config["SERVER"]}/calls/{number}.json'
         ]
     })
