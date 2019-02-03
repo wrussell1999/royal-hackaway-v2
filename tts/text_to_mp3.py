@@ -15,7 +15,9 @@ voice = texttospeech.types.VoiceSelectionParams(
     ssml_gender=texttospeech.enums.SsmlVoiceGender.NEUTRAL)
 
 audio_config = texttospeech.types.AudioConfig(
-    audio_encoding=texttospeech.enums.AudioEncoding.MP3)
+    audio_encoding=texttospeech.enums.AudioEncoding.MP3,
+    speaking_rate=0.70,
+    pitch=-15.0)
 
 response = client.synthesize_speech(synthesis_input, voice, audio_config)
 with open('output.mp3', 'wb') as out:
