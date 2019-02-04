@@ -56,7 +56,7 @@ Using the Nexmo API, we get the user to text our bot using SMS with the theme
 they'd like to use for their own rap. Then, we select a random song from our
 list of songs to use as a base. We then use NLP to tag the song and to modify
 it so that we replace some of the nouns with our desired subject, effectively
-changing what the song is about.
+changing what the song is about. The lyrics are converted into an MP3 with the Google Cloud TTS API, with a beat added behind them, using pydub, to create the rap.
 
 The result is then sent back to the user. This is done with a phone call, where
-the rap is sung back to them using a text-to-speech program.
+the rap is played back to them.
