@@ -1,6 +1,6 @@
 # Rap God
 
-Rap God is our creation from [Royal Hackaway](https://royalhackaway.com/).
+Rap God is our [creation](https://devpost.com/software/rap-god) from [Royal Hackaway](https://royalhackaway.com/).
 
 We won the Nexmo Prize (best use of their API) and best audio hack.
 
