@@ -48,8 +48,6 @@ To run:
 python3 -m caller
 ```
 
-...
-
 ## Technical details
 
 Using the Nexmo API, we get the user to text our bot using SMS with the theme
