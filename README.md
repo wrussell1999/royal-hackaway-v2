@@ -24,8 +24,8 @@ The entire project is built in python. We've used quite a few libraries, includi
 
 Our team was just two people,
 
-- [Justin Chadwell](https://github.com/jedevc): Natural language processing and lyric generation
-- [Will Russell](https://github.com/wrussell1999): Nexmo, flask, tts and mp3 layering
+- [Justin Chadwell](https://github.com/jedevc): Natural language processing and lyric generation with `tswift`
+- [Will Russell](https://github.com/wrussell1999): Nexmo SMS and calls, flask server, tts and mp3 layering
 
 ## Installation
 
@@ -36,11 +36,18 @@ $ git clone https://github.com/jedevc/royal-hackaway-2019.git
 $ cd royal-hackaway-2019
 $ virtualenv .env
 $ source .env/bin/activate
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
 Before you can run, ensure that you have created the required files for the
 Nexmo API and the Google Cloud Platform so that you can access their APIs.
+
+### Google Cloud Platform
+
+Follow the quick start guide [here](https://cloud.google.com/text-to-speech/docs/quickstart-client-libraries#client-libraries-install-python)
+
+
+## Usage
 
 To run:
 
